@@ -1,0 +1,188 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                <div class="col-md-4 d-flex justify-content-start">
+                <h5 class="card-title inline-element" n>Perview Assessment</h5>
+                </div>
+                <div class="col-md-4 d-flex justify-content-center">
+                <span *ngIf="startQuiz" class="btn btn btn-info" [innerHtml]="timerDisplay"></span>
+                </div>
+                <div class="col-md-4 d-flex justify-content-end">
+                <span class="right-align-btn">
+                    <!-- <button type="button" class="btn btn-outline-danger flex-col justify-content-md-end"
+                    (click)="navigateBack()">
+                    <span style="padding: 0px 10px 10px 0px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z" />
+                        </svg>
+                    </span>
+                    Back</button> -->
+                </span>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="!startQuiz">
+    <div class="col-md-12">
+        <div class="card" *ngIf="assessmentList">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-12 d-flex justify-content-center">
+                        <h2><span [innerHtml]="assessmentList[0].assessment_code"></span>-<span [innerHtml]="assessmentList[0].materialName"></span></h2>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-6 d-flex justify-content-start">
+                        <div>
+                            <h3 class="text-">Total Score : <span [innerHtml]="assessmentList[0].total_score"></span></h3>
+
+                        </div>
+                    </div>
+                    <div class="col-6 d-flex justify-content-end">
+                        <div>
+                            <h3 class="text-">Total Time : <span [innerHtml]="assessmentList[0].total_time"></span></h3>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-center">
+                        <button class="btn btn-success" (click)="startquiz()">Start Quiz <i class="fa fa-play mx-2" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <hr class="solid">
+                <div class="card-body">
+                    <div class="row ">
+                        <div class="col-md-12 d-flex justify-content-center">
+                            <span [innerHtml]="assessmentList[0].instruction"></span>
+                            <span >
+                                <pdf-viewer [src]="instrunctionUrl"  [rotation]="0"
+                                [original-size]="false"
+                                [show-all]="true"
+                                [fit-to-page]="false"
+                                [zoom]="1"
+                                [zoom-scale]="'page-width'"
+                                [stick-to-page]="false"
+                                [render-text]="true"
+                                [external-link-target]="'blank'"
+                                [autoresize]="true"
+                                [show-borders]="false"
+                                style="width: 100%; height: 600px;"></pdf-viewer>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+</div>
+<div class="row" *ngIf="startQuiz">
+    <div *ngFor="let assessment of assessmentList;let i = index">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="media align-items-center">
+                    <div class="media-body">
+                        <h5 class="m-0">
+                           <span [innerHtml]="i+1"></span>. <span [innerHtml]="assessment.question_title"></span>
+                        </h5>
+                        <ng-container *ngIf="assessment.question_image_url">
+                            <div class="col-12 d-flex justify-content-center">
+                                <img [src]="assessment.question_image_url" alt="ref_image" width="400px" height="250px" />
+                                </div>
+                        </ng-container>
+                        <div class="row">
+                        <span *ngIf="assessment.question_type.includes('type4')" class="col-4">
+                         <input class="form-control" type="text" placeholder="Enter Your Answer" (blur)="setSelected(assessment.questionId,i,$event.target.value)">
+                        </span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-center">
+                            <span *ngIf="assessment.question_type.includes('type3')" class="col-6">
+
+                                <table class="table table-bordered">
+                                    <thead class="thead">
+                                      <tr>
+                                        <th scope="col">Topics</th>
+                                        <th scope="col">Keys</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let match of matchTheFollow[i]; let ind=index">
+                                        <td><span [innerHtml]="match.key"></span></td>
+                                        <td><span [innerHtml]="match.value"></span></td>
+                                    </tr>
+                                    </tbody>
+                                  </table>
+                            </span>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body mx-2">
+            <div *ngIf="assessment.question_type.includes('type1') || assessment.question_type.includes('type3')">
+                <div class="form-group">
+                    <div class="custom-control radio-button-sty">
+                        <input type="radio" (change)="setSelected(assessment.questionId,i,assessment.answer_a)" value="{{i}}val1" id="answer_a{{i}}" name="group1{{i}}">
+                        <label for="answer_a{{i}}" class="custom-control-label">
+                            <i><span [innerHtml]="assessment.answer_a"></span></i>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="custom-control radio-button-sty">
+                        <input type="radio" (change)="setSelected(assessment.questionId,i,assessment.answer_b)" value="{{i}}val2" id="answer_b{{i}}" name="group1{{i}}">
+                        <label for="answer_b{{i}}" class="custom-control-label">
+                            <i><span [innerHtml]="assessment.answer_b"></span></i>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="custom-control radio-button-sty">
+                        <input type="radio" (change)="setSelected(assessment.questionId,i,assessment.answer_c)" value="{{i}}val3" id="answer_c{{i}}" name="group1{{i}}">
+                        <label for="answer_c{{i}}" class="custom-control-label">
+                            <i><span [innerHtml]="assessment.answer_c"></span></i>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="custom-control radio-button-sty">
+                        <input type="radio" (change)="setSelected(assessment.questionId,i,assessment.answer_d)" value="{{i}}val4" id="answer_d{{i}}" name="group1{{i}}">
+                        <label for="answer_d{{i}}" class="custom-control-label">
+                            <i><span [innerHtml]="assessment.answer_d"></span></i>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="assessment.question_type.includes('type2')">
+                <div class="form-group">
+                    <div class="custom-control radio-button-sty">
+                        <input type="radio" (change)="setSelected(assessment.questionId,i,'True')" value="{{i}}val1" id="type2true{{i}}" name="group1{{i}}">
+                        <label for="type2true{{i}}" class="custom-control-label">True</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="custom-control radio-button-sty">
+                        <input type="radio" (change)="setSelected(assessment.questionId,i,'False')" value="{{i}}val2" id="type2false{{i}}" name="group1{{i}}">
+                        <label for="type2false{{i}}" class="custom-control-label">False</label>
+                    </div>
+                </div>
+            </div>
+            </div>
+         </div>
+    </div>
+    </div>
+    <div class="card-footer">
+        <span class="right-align-btn">
+            <button class="btn btn-success flex-col justify-content-md-end" (click)="submit()">Submit <i class="fa fa-arrow-right"></i></button>
+        </span>
+    </div>
+</div>

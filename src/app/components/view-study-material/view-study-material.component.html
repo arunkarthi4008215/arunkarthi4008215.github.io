@@ -1,0 +1,150 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title inline-element">View Material</h5>
+                <span class="right-align-btn">
+                    <button class="btn btn-success flex-col justify-content-md-end" (click)="editMaterial()"><i class="fas fa-pen-fancy" aria-hidden="true"></i> Edit</button>
+                    <button class="btn btn-warning flex-col justify-content-md-end" (click)="deleteMaterial()"><i class="fas fa-trash mr-2" aria-hidden="true"></i>Delete</button>
+                    <!-- <button type="button" class="btn btn-outline-danger flex-col justify-content-md-end"
+                    (click)="navigateBack()">
+                    <span style="padding: 0px 10px 10px 0px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z" />
+                        </svg>
+                    </span>
+                    Back</button> -->
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row" style="height: 400px;">
+        <div class="col-md-4 pt-4">
+            <div data-perfect-scrollbar="" style="position: relative; height:400px;" class="ps ps--active-y">
+                <div class="card clear-shadow border">
+                    <div class="card-body ">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <strong class="material-title">{{title}}</strong>
+                            <small class="text-muted">3h 50min</small>
+                        </div>
+                        <div>
+                            <small class="text-muted">(391 ratings)</small>
+                        </div>
+                        <div *ngFor="let material of studyMaterials">
+                            <div class="row mt-2">
+                            <span class="col-5 type">Indusrty </span>
+                            <span class="col-7 text-muted" [innerHtml]="material.industry"></span>
+                            </div>
+                            <div class="row mt-2">
+                            <span class="col-5 type">Department </span>
+                            <span class="col-7 text-muted" [innerHtml]="material.department"></span>
+                            </div>
+                            <div class="row mt-2">
+                                <span class="col-5 type">Language </span>
+                                <span class="col-7 text-muted" [innerHtml]="material.language"></span>
+                            </div>
+                            <div class="row mt-2">
+                                <span class="col-5 type">Modified </span>
+                                <span class="col-7 text-muted">{{material.modifiedAt | date :'medium'}}</span>
+                            </div>
+                            <div class="row mt-2">
+                                <span class="col-12 type">Short Description </span>
+                                <div class="col-12 ml-2 text-muted">{{material.shortDescription}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 p-4 video-view">
+            <div *ngIf="video!=undefined && video != '' && video != null">
+            <video class="col-12 round-shape video" controls  disablepictureinpicture controlslist="nodownload noplaybackrate" #videoPlayer>
+                <source src="{{video}}" type="video/mp4">
+            </video>
+            <!-- <div class="video-content">
+                <button class="btn btn-round btn-primary" *ngIf="!isPlay" (click)="toggleVideo()">Play
+                    &#9654;</button>
+                <button class="btn btn-round btn-primary" *ngIf="isPlay" (click)="toggleVideo()">Pause
+                    &#10074;&#10074;</button>
+            </div> -->
+        </div>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header card-header-large bg-light d-flex align-items-center">
+                            <div class="flex">
+                                <h4 class="card-header__title">My Progress</h4>
+                                <div class="card-subtitle text-muted">Current lesson progress</div>
+                            </div>
+                            <div class="ml-auto">
+                                <button class="btn btn-success text-muted"> Complete</button>
+                            </div>
+                        </div>
+                        <div class="p-2 px-4 d-flex align-items-center">
+                            <div class="progress" style="width:100%;height:6px;">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 60%;" aria-valuenow="60"
+                                    aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="ml-2 text-primary">
+                                35%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="media align-items-center">
+                                <div class="media-left">
+                                    <img src="../../../assets/img/faces/ayo-ogunseinde-1.jpg" alt="About Adrian" width="40"
+                                        class="rounded-circle">
+                                </div>
+                                <div class="media-body">
+                                    <div class="card-title mb-0">
+                                        <a href="student-profile.html" class="text-body">
+                                            <strong>AdrianDemian</strong>
+                                        </a>
+                                    </div>
+                                    <p class="text-muted mb-0">Author</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            Having over 12 years exp. Adrian is one of the lead UI designers in our team.
+                        </div>
+                    </div>
+                </div>
+                </div>
+    <div class="row mt-3">
+        <div class="col-12">
+
+            <div class="card p-3">
+                <ul ngbNav #nav="ngbNav" class="nav-tabs">
+                    <li ngbNavItem>
+                      <a ngbNavLink>Overview</a>
+                      <ng-template ngbNavContent>
+                        <div class="card-body" id="course_content">
+                            <span [innerHtml]="overview"></span>
+                        </div>
+                      </ng-template>
+                    </li>
+                  </ul>
+
+                  <div [ngbNavOutlet]="nav"></div>
+                  <div>
+                    <pdf-viewer src="{{pdffile}}"
+                    [original-size]="false"></pdf-viewer>
+                  </div>
+            </div>
+        </div>
+
+    </div>
+</div>

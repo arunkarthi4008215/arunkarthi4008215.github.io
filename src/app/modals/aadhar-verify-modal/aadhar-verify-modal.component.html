@@ -1,0 +1,63 @@
+<div class="modal-content bg-light">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Verify Aadhar Number</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+    </div>
+    <div class="modal-body">
+        <div>
+            <div class="row">
+                <form [formGroup]="aadharVerifyForm" (ngSubmit)="onVerifyAdhar()">
+                    <div class="row">
+                        <div class="col">
+                            <div class="col form-group form-field-group">
+                                <label for="aadharNo">
+                                    <span class="required-field">Aadhar Number</span>
+                                </label>
+                                <div class="form-input-field" data-validation-info="Enter the Aadhar Number"
+                                    [ngClass]="{'form-invalid-input' : (isAdharValidate && aadharVerifyForm.controls.aadharNo.errors)}">
+                                    <input id="aadharNo" type="text" class="form-control" autocomplete="off"
+                                        name="aadharNo" formControlName="aadharNo" minlength="12" maxlength="12" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="col form-group form-field-group">
+                                <label for="captcha">
+                                    <span class="required-field">Enter Captcha</span>
+                                </label>
+                                <div class="form-input-field" data-validation-info="Enter the Captcha Field"
+                                    [ngClass]="{'form-invalid-input' : (isAdharValidate && aadharVerifyForm.controls.captcha.errors)}">
+                                    <input id="captcha" type="text" class="form-control" autocomplete="off"
+                                        name="captcha" formControlName="captcha" minlength="6" maxlength="6" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="auth-form__captcha-box">
+                                <img class="auth-form__captcha-image" alt="captcha" [src]="captchaImage">
+                                <span (click)="getCaptcha()">
+                                    <svg focusable="false" style="width: 24px;height:24px;cursor:pointer" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6v3l4-4-4-4v3c-4.42 0-8 3.58-8 8 0 1.57.46 3.03 1.24 4.26L6.7 14.8c-.45-.83-.7-1.79-.7-2.8 0-3.31 2.69-6 6-6zm6.76 1.74L17.3 9.2c.44.84.7 1.79.7 2.8 0 3.31-2.69 6-6 6v-3l-4 4 4 4v-3c4.42 0 8-3.58 8-8 0-1.57-.46-3.03-1.24-4.26z"></path>
+                                    </svg>
+                                </span>
+                                </div>
+                                </div>
+                    </div>
+                    <div class="row">
+                        <div class="auth-form__button-container">
+                            <div class="auth-form__button">
+                                <button type="submit" class="btn btn-md btn-info">Procced and Verify Aadhaar</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- <div class="modal-footer">
+                
+            </div> -->
+        </div>
+    </div>
+</div>

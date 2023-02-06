@@ -1,0 +1,92 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title inline-element">Study Materials</h5>
+        <span class="right-align-btn">
+          <!-- <button class="btn btn-success" [routerLink]="['app/uploaddocument']">
+              <span>
+                <img class="img-btn-icon" src="../../../assets/icons/file-upload.png">
+              </span>
+              <span>Upload Material</span>
+          </button> -->
+        </span>
+      </div>
+      <div class="card-body">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-plain">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-4" *ngFor="let material of studyMaterials">
+        <div class="card p-2">
+          <img  class="card-image-top" src="../../../assets/img/damir-bosnjak.jpg" alt="">
+          <div class="card-body">
+            <h5 class="card-title text-info">{{material.title}}</h5>
+            <div> <b>Category : </b> <span [innerHTML]="material.category"></span> - <span [innerHTML]="material.subCategory"></span> (<span [innerHTML]="material.language"></span>)</div>
+            <div class="text-muted py-2"> <b>Author :</b> {{material.author}}</div>
+            <div class=" text-muted py-2"><b>File Type : </b>{{material.type}} -<span>{{material.noOf}} ({{material.size}} MB)</span></div>
+            <div class="text-muted py-2"> <span><b>Last Modified :</b> {{material.modifiedDate}}</span></div>
+            <div class="text font-weight-bold py-2">{{material.price}}</div>
+            <a *ngIf="material.price !== 'Free'" href="#" class="btn btn-primary">Buy</a>
+            <a *ngIf="material.price == 'Free'" href="#" class="btn btn-success">See Details</a>
+          </div>
+        </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="places-buttons">
+          <div class="row">
+            <div class="col-md-6 ml-auto mr-auto text-center">
+              <h4 class="card-title">
+                Notifications Places
+                <p class="category">Click to view notifications</p>
+              </h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-8 ml-auto mr-auto">
+              <div class="row">
+                <div class="col-md-4">
+                  <button class="btn btn-primary btn-block" (click)="showNotification('top','left')">Top Left</button>
+                </div>
+                <div class="col-md-4">
+                  <button class="btn btn-primary btn-block" (click)="showNotification('top','center')">Top Center</button>
+                </div>
+                <div class="col-md-4">
+                  <button class="btn btn-primary btn-block" (click)="showNotification('top','right')">Top Right</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-8 ml-auto mr-auto">
+              <div class="row">
+                <div class="col-md-4">
+                  <button class="btn btn-primary btn-block" (click)="showNotification('bottom','left')">Bottom Left</button>
+                </div>
+                <div class="col-md-4">
+                  <button class="btn btn-primary btn-block" (click)="showNotification('bottom','center')">Bottom Center</button>
+                </div>
+                <div class="col-md-4">
+                  <button class="btn btn-primary btn-block" (click)="showNotification('bottom','right')">Bottom Right</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->

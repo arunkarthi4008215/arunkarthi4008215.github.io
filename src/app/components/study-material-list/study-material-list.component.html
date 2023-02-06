@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title inline-element">Study Materials</h5>
+          <span class="right-align-btn">
+            <button class="btn btn-success"  [queryParams] ="{deptId:deptId}" [routerLink]="['/app/uploaddocument']">
+              <span>
+                <img class="img-btn-icon" src="../../../assets/icons/file-upload.png">
+              </span>
+              <span>Upload Material</span>
+            </button>
+          </span>
+        </div>
+        <div class="card-body">
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="row">
+    <div class="col-md-12">
+      <div class="card card-plain">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-4" *ngFor="let material of studyMaterials">
+              <div class="card p-2">
+                <div class="card-header card-header-large haeder-bg-img text-center py-5">
+                  <span>
+                    <img src="../../../assets/icons/open-book.png" style="width: 40px;height:40px" alt="material">
+                  </span>
+                  <div class="course-title text-info">{{material.materialTitle}}</div>
+                  <div class="course-subtitle">
+                    <span [innerHTML]="material.subtitle"></span>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="text-muted py-2"> <b>Author :</b> {{material.authorName}}</div>
+                  <div class="text-muted py-2"> <b>Indusrty :</b> {{material.industry}}</div>
+                  <div class="text-muted py-2"><b>File Type : </b>{{material.fileformat}} -<span>{{material.noOf}}
+                      ({{material.size}})</span></div>
+                  <div class="text-muted py-2"><b>Language :</b> {{material.language}}</div>
+                  <div class="text-muted py-2"><b>Short Description :</b> {{material.shortDescription}}</div>
+                  <div class="text-muted py-2"> <span><b>Modified :</b> {{material.modifiedAt | date :'short'}}</span>
+                  </div>
+                  <div *ngIf="material.price !== '0.00'" class="text font-weight-bold py-2">{{material.price}}</div>
+                  <a *ngIf="material.price !== '0.00'" href="#" class="btn btn-primary">Buy</a>
+                  <a *ngIf="material.price == '0.00'" [routerLink]="['/app/view-material']"
+                    [queryParams]="{matId:material.Id}" class="btn btn-success">See Details >>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

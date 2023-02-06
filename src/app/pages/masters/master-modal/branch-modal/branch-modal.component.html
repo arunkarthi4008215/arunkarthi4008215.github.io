@@ -1,0 +1,49 @@
+<div class="modal-content bg-light">
+    <div class="modal-header">
+      <h4 *ngIf="!edit" class="modal-title" id="modal-basic-title">Add Branch</h4>
+      <h4 *ngIf="edit" class="modal-title" id="modal-basic-title">Edit Branch</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+    </div>
+    <div class="modal-body">
+      <form class="form" [formGroup]="branchForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label>Branch Code</label>
+            <input type="text" class="form-control" disabled name="branchCode" formControlName="branchCode">
+            <span class="text-danger"
+                *ngIf="(branchform.branchCode.touched || submitted) && branchform.branchCode.errors?.required">
+                Branch Code is required
+            </span>
+        </div>
+        <div class="form-group">
+            <label>Branch Name</label>
+            <input type="text" class="form-control" name="branchName" formControlName="branchName">
+            <span class="text-danger"
+                *ngIf="(branchform.branchName.touched || submitted) && branchform.branchName.errors?.required">
+                Branch Name is required
+            </span>
+        </div>
+        <div class="form-group">
+            <label for="locationId">Location</label>
+            <select id="locationId" class="form-select" name="locationId" formControlName="locationId">
+                <option value="" selected>Select Location</option>
+                <option *ngFor="let location of locationList" [value]="location.Id">{{location.locationCode}}-{{location.locationName}}</option>
+              </select>
+            <span class="text-danger"
+                *ngIf="(branchform.locationId.touched || submitted) && branchform.locationId.errors?.required">
+                Location is required
+            </span>
+        </div>
+        <div class="modal-footer">
+            <span *ngIf="!edit">
+            <button type="submit" class="btn btn-success">Save</button>
+            </span>
+            <span *ngIf="edit">
+            <button type="submit" class="btn btn-success">Update</button>
+            <button type="button" (click)="deleteBranch()" class="btn btn-danger">Delete</button>
+            </span>
+            <button type="button" (click)="closeModal()" class="btn btn-warning">Close</button>
+        </div>
+    </form>
+    </div>
+  
+    </div>

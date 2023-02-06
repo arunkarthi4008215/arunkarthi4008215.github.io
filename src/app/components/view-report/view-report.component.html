@@ -1,0 +1,238 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h6 class="card-title inline-element">Reports <i class="fas fa-angle-double-right"></i> {{title}}</h6>
+        <span class="right-align-btn">
+          <!-- <button type="button" class="btn btn-outline-danger flex-col justify-content-md-end"
+          (click)="navigateBack()">
+          <span style="padding: 0px 10px 10px 0px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd"
+                      d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z" />
+              </svg>
+          </span>
+          Back</button> -->
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-body">
+      <div class="row ">
+      <div class="col-4">
+        <div id="chart">
+          <div [hidden]="!chart">
+            <canvas id="canvas"></canvas>
+            <div class="donut-inner">
+              <h6>Trained</h6>
+              <span>85%</span>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-2 pt-5">
+        <div class="divder">
+        <p class="ml-5">Passed</p>
+        <h5>41</h5>
+        </div>
+      </div>
+      <div class="col-2 pt-5">
+        <div class="divder">
+        <p class="ml-5">Failed</p>
+        <h5>2</h5>
+        </div>
+      </div>
+      <div class="col-2 pt-5">
+        <div class="divder">
+        <p class="ml-5">In Progress</p>
+        <h5>6</h5>
+        </div>
+      </div>
+      <div class="col-2 pt-5">
+        <div class="divder">
+        <p class="ml-5">Not Started</p>
+        <h5>5</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="col">
+    <div class="card shadow">
+      <div class="card-header border-0">
+        <div class="row">
+          <div class="col-10">
+          <h3 class="mb-0">Learners Details</h3>
+        </div>
+          <div class="col-2 m-0">
+            <button class="btn btn-outline-primary border-primary" (click)="showFilter()">
+              <img height="20px" width="20px" class="mr-2" src="assets/icons/filter-icon.svg">Filter
+            </button>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-end report-grid" *ngIf="isFilter">
+          <div class="col-2">
+            <label>From</label>
+            <div class="input-group">
+              <input class="form-control" placeholder="yyyy-mm-dd"
+                     name="dp" [(ngModel)]="model" container="body" ngbDatepicker #d="ngbDatepicker">
+              <button class="btn btn-neutral calendar" (click)="d.toggle()" type="button"></button>
+            </div>
+            </div>
+            <div class="col-2">
+              <label>To</label>
+              <div class="input-group">
+                <input class="form-control" placeholder="yyyy-mm-dd"
+                       name="dp" [(ngModel)]="model" container="body" ngbDatepicker #d="ngbDatepicker">
+                <button class="btn btn-neutral calendar" (click)="d.toggle()" type="button"></button>
+              </div>
+              </div>
+            <div class="col-2 mt-2 form-group form-field-group">
+              <div data-validation-info="Enter the category"
+                [ngClass]="{'form-invalid-input' : (isMasterValidate && !facultySearch.department)}">
+                <label >Department</label>
+                <select id="inputState" class="form-select" [(ngModel)]="facultySearch.department">
+                  <option value="0" selected>ALL Deparment</option>
+                  <option *ngFor="let derpartment of departmentList" [value]="derpartment.Id">{{derpartment.deptName}}</option>
+                </select>
+            </div>
+          </div>
+          <div class="col-lg-1 mt-3 report-search-icon">
+            <i class="fas fa-search"></i>
+          </div>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table align-items-center table-flush">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Full Name</th>
+              <th scope="col">Department</th>
+              <th scope="col">Completed</th>
+              <th scope="col">Trained</th>
+              <th scope="col">Inprogress</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr (click)="viewEmployeeReport()" class="cursor-pointer">
+              <th scope="row">
+                <div class="media align-items-center d-flex">
+                  <a href="#" class="avatar rounded-circle mr-3">
+                    <img alt="Image placeholder" src="https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/img/theme/bootstrap.jpg">
+                  </a>
+                  <div class="media-body">
+                    <span class="mb-0 text-sm">Argon Design System</span>
+                  </div>
+                </div>
+              </th>
+              <td>
+               Saftey Department
+              </td>
+              <td>
+                  <span>19</span>
+              </td>
+              <td>
+                <span>20</span>
+              </td>
+              <td>
+               <p class="text-uppercase d-flex justify-content-between blue-text cursor-pointer">
+               <span>1</span>
+               <span> <i class="fa fa-angle-right"></i></span>
+               </p>
+              </td>
+            </tr>
+            <tr (click)="viewEmployeeReport()" class="cursor-pointer">
+              <th scope="row">
+                <div class="media align-items-center d-flex">
+                  <a href="#" class="avatar rounded-circle mr-3">
+                    <img alt="Image placeholder" src="https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/img/theme/bootstrap.jpg">
+                  </a>
+                 <div class="media-body">
+                    <span class="mb-0 text-sm">Arun Kumar</span>
+                  </div>
+                </div>
+              </th>
+              <td>
+               Saftey Department
+              </td>
+              <td>
+                  <span>19</span>
+              </td>
+              <td>
+                <span>20</span>
+              </td>
+              <td>
+               <p class="text-uppercase d-flex justify-content-between blue-text cursor-pointer">
+               <span>1</span>
+               <span> <i class="fa fa-angle-right"></i></span>
+               </p>
+              </td>
+            </tr>
+            <tr (click)="viewEmployeeReport()" class="cursor-pointer">
+              <th scope="row">
+                <div class="media align-items-center d-flex">
+                  <a href="#" class="avatar rounded-circle mr-3">
+                    <img alt="Image placeholder" src="https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/img/theme/bootstrap.jpg">
+                  </a>
+                 <div class="media-body">
+                    <span class="mb-0 text-sm">Vijay Kumar</span>
+                  </div>
+                </div>
+              </th>
+              <td>
+               Saftey Department
+              </td>
+              <td>
+                  <span>19</span>
+              </td>
+              <td>
+                <span>20</span>
+              </td>
+              <td>
+               <p class="text-uppercase d-flex justify-content-between blue-text cursor-pointer">
+               <span>1</span>
+               <span> <i class="fa fa-angle-right"></i></span>
+               </p>
+              </td>
+            </tr>
+            <tr (click)="viewEmployeeReport()" class="cursor-pointer">
+              <th scope="row">
+                <div class="media align-items-center d-flex">
+                  <a href="#" class="avatar rounded-circle mr-3">
+                    <img alt="Image placeholder" src="https://raw.githack.com/creativetimofficial/argon-dashboard/master/assets/img/theme/bootstrap.jpg">
+                  </a>
+                 <div class="media-body">
+                    <span class="mb-0 text-sm">Ajay</span>
+                  </div>
+                </div>
+              </th>
+              <td>
+               Saftey Department
+              </td>
+              <td>
+                  <span>19</span>
+              </td>
+              <td>
+                <span>20</span>
+              </td>
+              <td>
+               <p class="text-uppercase d-flex justify-content-between blue-text cursor-pointer">
+               <span>1</span>
+               <span> <i class="fa fa-angle-right"></i></span>
+               </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+

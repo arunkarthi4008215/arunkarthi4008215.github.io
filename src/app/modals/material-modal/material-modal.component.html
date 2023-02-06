@@ -1,0 +1,156 @@
+<div class="modal-content bg-light">
+<div class="modal-header">
+    <h4 class="modal-title" *ngIf="Title!='Editmaterial'" id="modal-basic-title">Create Department</h4>
+    <h4 class="modal-title" *ngIf="Title == 'Editmaterial'" id="modal-basic-title">{{Title}}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+  </div>
+  <div class="modal-body">
+    <div *ngIf="Title != 'Editmaterial'">
+      <!-- <p *ngIf="departmentList.length==0">Department Doesn't Exist</p> -->
+        <div class="row">
+            <div class="col form-group form-field-group">
+              <div class="form-input-field" data-validation-info="Select the Department"
+                [ngClass]="{'form-invalid-input' : (isMasterValidate && !facultySearch.department)}">
+                <select id="inputState" class="form-select" [(ngModel)]="facultySearch.department">
+                  <option value="0" selected>Select Department</option>
+                  <option *ngFor="let derpartment of departmentList" [value]="derpartment.Id">{{derpartment.deptName}}</option>                  
+                </select>
+              </div>
+            </div>
+            </div>
+            </div>
+            <div *ngIf="Title == 'Editmaterial'">
+                <div class="row m-3">
+                    <div class="col-lg-12 form-group form-field-group">
+                      <label class="" for="upload-title">
+                        <span class="required-field">*Title</span>
+                      </label>
+                      <div class="form-input-field" data-validation-info="Enter the title"
+                        [ngClass]="{'form-invalid-input' : (isMasterValidate && !materialMaster.title)}">
+                        <input id="upload-title" type="text" class="form-control" autocomplete="off" [(ngModel)]="materialMaster.title"
+                          maxlength="100" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row m-3">
+                    <div class="col-lg-12 form-group form-field-group">
+                      <label class="" for="upload-title">
+                        <span class="required-field">*Sub-Title</span>
+                      </label>
+                      <div class="form-input-field" data-validation-info="Enter the title"
+                        [ngClass]="{'form-invalid-input' : (isMasterValidate && !materialMaster.subtitle)}">
+                        <input id="upload-subtitle" type="text" class="form-control" autocomplete="off"
+                          [(ngModel)]="materialMaster.subtitle" maxlength="100" />
+                      </div>
+                    </div>
+                  </div>
+                
+                  <div class="row m-3">
+                    <div class="col-lg-4 form-group form-field-group">
+                      <label class="" for="employee-firstName">
+                        <span class="required-field">Industry</span>
+                      </label>
+                      <div class="form-input-field" data-validation-info="Enter the category"
+                        [ngClass]="{'form-invalid-input' : (isMasterValidate && !materialMaster.industry)}">
+                        <select id="inputState" class="form-select" [(ngModel)]="materialMaster.industry">
+                          <option [value]="industry.Id"  *ngFor="let industry of industries">{{industry.Industry_Name}}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 form-group form-field-group">
+                      <label class="" for="facultyfacultyname">
+                        <span class="required-field">Department</span>
+                      </label>
+                      <div class="form-input-field" data-validation-info="Enter the category"
+                        [ngClass]="{'form-invalid-input' : (isMasterValidate && !materialMaster.department)}">
+                        <select id="inputState" class="form-select" [(ngModel)]="materialMaster.department" disabled>
+                          <option *ngFor="let derpartment of departmentList" [value]="derpartment.Id">{{derpartment.deptName}}</option>                  </select>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 form-group form-field-group">
+                      <label class="" for="employee-firstName">
+                        <span class="required-field">*Language</span>
+                      </label>
+                      <div class="form-input-field" data-validation-info="Enter the language"
+                        [ngClass]="{'form-invalid-input' : (isMasterValidate && !materialMaster.language)}">
+                        <select id="inputState" class="form-select" [(ngModel)]="materialMaster.language">
+                          <option value="" disabled selected>Select Language</option>
+                          <option value="tamil">Tamil</option>
+                          <option value="english">English</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row m-3">
+                    <div class="col-lg-12 form-group form-field-group">
+                      <label class="" for="upload-shortDescription">
+                        <span class="required-field">*Short Description</span>
+                      </label>
+                      <div class="form-input-field" data-validation-info="Enter the shortDescription"
+                        [ngClass]="{'form-invalid-input' : (isMasterValidate && !materialMaster.shortDescription)}">
+                        <input id="upload-shortDescription" type="text" class="form-control" autocomplete="off"
+                          [(ngModel)]="materialMaster.shortDescription" maxlength="120" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row m-3">
+                    <div class="col-lg-12 form-group form-field-group">
+                      <label class="" for="upload-shortDescription">
+                        <span class="required-field">*Overview</span>
+                      </label>
+                      <div class="form-input-field" data-validation-info="Enter the overview"
+                        [ngClass]="{'form-invalid-input' : (isMasterValidate && !materialMaster.overview)}">
+                        <textarea id="upload-overview" type="text" class="form-control" autocomplete="off"
+                          [(ngModel)]="materialMaster.overview" ></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mx-5 py-3 d-flex align-items-center">
+                    <hr class="flex-grow-1" />
+                    <div class="text-light bg-light">or</div>
+                    <hr class="flex-grow-1" />
+                </div>
+                  <div class="row m-3">
+                    <div class="col-md-12">
+                      <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Upload Overview Attachment</label>
+                        <input type="file" class="form-control" (change)="overviewAttachmentchanger($event.target.files)"
+                         accept=".pdf,.docx" placeholder="">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row m-3">
+                    <label class="label" for="employee-firstName">
+                      <h6 class="required-field">*Graphics Upload</h6>
+                    </label>
+                </div>
+              
+                <div class="file-upload-container cursor-pointer" appDnd (fileDropped)="onFileDropped($event)">
+                  <input type="file" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event.target.files)" />
+                  <img src="assets/icons/file-upload.png" alt="">
+                  <h3>Drag and drop file here</h3>
+                  <h3>or</h3>
+                  <label for="fileDropRef">Browse for file</label>
+                </div>
+                <div class="files-list" *ngIf="videoFile.name != null">
+                  <div class="single-file">
+                    <img src="assets/icons/folder-icon.svg" width="30px" alt="file">
+                    <div class="info">
+                      <h4 class="name">
+                        {{ videoFile?.name }}
+                      </h4>
+                      <p class="size">
+                        {{ formatBytes(videoFile?.size) }}
+                      </p>
+                      <app-progress [progress]="videoFile?.progress"></app-progress>
+                    </div>
+                    <img src="assets/icons/delete-icon.svg" class="delete" width="20px" alt="file" (click)="deleteFile(i)">
+                  </div>
+                </div>
+            </div>
+  </div>
+  <div class="modal-footer">
+    <button *ngIf="Title != 'Editmaterial'" type="button" class="btn btn-outline-dark" (click)="saveDepartmentfolder()">Save</button>
+    <button *ngIf="Title == 'Editmaterial'" type="button" class="btn btn-outline-dark" (click)="updateMaterial()">Update</button>
+  </div>
+  </div>

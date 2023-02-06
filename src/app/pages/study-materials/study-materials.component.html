@@ -1,0 +1,55 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#/app/dashboard">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Study Materials</li>
+  </ol>
+</nav>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title inline-element">Department Wise Study Materials</h5>
+      </div>
+      <div class="card-body">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card card-plain">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 col-sm-12" *ngFor="let department of departmentList">
+            <div class="card card-hover" style="align-items: center;">
+            <div class="p-3 cursor-pointer folder-img-backgound bg-transprant" [queryParams]="{deptId:department.Department_Id}" [routerLink]="['/app/study-material-list']">
+            </div>
+            <div class="card-header card-header-large text-center">
+              <div class="folder-title">
+              <span>{{department.Department_Name}}</span> -
+              <span>{{department.Material_Count}}</span>
+              </div>
+            </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 " *ngIf="folderCount !=0">
+            <div class="card cursor-pointer m-3 folder-haeder-bg-img text-center py-5 bg-transprant" (click)="addNewFolder()">
+            <div class="card-header card-header-large text-center">
+              <div class="create-text">
+                <div>
+                  <i class="fas fa-folder-plus mr-2"></i>
+                </div>
+                  <div>
+                Add New Folder
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
