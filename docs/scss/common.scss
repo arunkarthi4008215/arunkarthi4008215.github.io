@@ -1,0 +1,111 @@
+@import './variables.scss';
+@import './mixin.scss';
+
+// text size
+.text-size-1 {
+    font-size: 56px;
+}
+
+.text-size-2 {
+    font-size: 36px;
+}
+
+.text-size-3 {
+    font-size: 13px;
+}
+
+.text-size-4 {
+    font-size: 30px;
+}
+
+.text-size-5 {
+    font-size: 60px;
+}
+
+.text-size-6 {
+    font-size: 20px;
+}
+
+.text-size-7 {
+    font-size: 28px;
+}
+
+.text-size-8 {
+    font-size: 19px;
+}
+
+// color 
+.text-color-1 {
+    color: var(--app-body-bg-color);
+}
+
+.text-color-2 {
+    color: var(--app-text-color-1);
+}
+
+.text-color-3 {
+    color: var(--app-text-color-2);
+}
+
+.text-color-4 {
+    color: var(--app-text-color-3);
+}
+
+.text-color-5 {
+    color: var(--app-text-color-4);
+}
+
+.text-color-6 {
+    color: var(--app-text-color-5);
+}
+
+.full-width {
+    width: 100vw;
+}
+
+// button
+.button {
+    border: none;
+    outline: none;
+
+    &.button-1 {
+        background-color: var(--app-button-color);
+        width: 198px;
+        height: 50px;
+        border-radius: 25px;
+        box-shadow: 0px 4px 4px 0px #00000040;
+        @include flex();
+    }
+}
+
+@media (max-width: 992px) {
+
+    // text size
+    .text-size-1 {
+        font-size: 38px;
+    }
+
+    .text-size-2 {
+        font-size: 20px;
+    }
+
+    .text-size-3 {
+        font-size: 10px;
+    }
+
+    .text-size-4 {
+        font-size: 20px;
+    }
+
+    .text-size-6 {
+        font-size: 16px;
+    }
+
+    .text-size-7 {
+        font-size: 20px;
+    }
+    
+    .text-size-8 {
+        font-size: 14px;
+    }
+}

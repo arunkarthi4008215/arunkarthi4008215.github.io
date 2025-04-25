@@ -1,0 +1,16 @@
+:root {
+  --app-primary-color: #ED7014;
+  --app-secondary-color: #008080;
+  --app-body-bg-color: #361859;
+  --app-button-color: #F22C7E;
+  --app-card-color: #6f1d72;
+  --app-active-color: #1C938B;
+  --app-text-color-1: #FFDD55;
+  --app-text-color-2: #9D1700;
+  --app-text-color-3: #B230B9;
+  --app-text-color-4: #434343;
+  --app-text-color-5: #8F2BA5;
+  --app-header-height: 80px;
+  --app-max-width: 1440px;
+  --app-footer-height: 500px;
+}/*# sourceMappingURL=variables.css.map */
